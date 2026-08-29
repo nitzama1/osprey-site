@@ -1,0 +1,315 @@
+/*
+ * The landing page's whole stylesheet. It shares the console's palette so the
+ * product and the page that sells it look like one thing, and it loads nothing
+ * from anywhere: system fonts only, no webfont, no icon set. A page whose
+ * headline is "your data never leaves your machine" cannot afford to fetch a
+ * stylesheet from a CDN that then learns every visitor's address.
+ */
+
+:root {
+  --ink: #14181f;
+  --ink-soft: #5b6673;
+  --line: #dfe3e9;
+  --panel: #ffffff;
+  --page: #f4f6f9;
+  --accent: #1f4fa8;
+  --night: #0d1218;
+  --night-soft: #1c2530;
+  --night-line: #2f3d4d;
+  --sky: #4da3ff;
+  --warn: #e8a33d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
+    Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+code,
+pre {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
+  background: var(--panel);
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  background: linear-gradient(180deg, var(--night-soft), var(--night));
+  color: #e9eef5;
+  padding: 1.1rem 1.5rem 5rem;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 68rem;
+  margin: 0 auto 3.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 1.05rem;
+}
+.mark {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 7px;
+}
+
+.ghost {
+  color: #c7d3e2;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--night-line);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+}
+.ghost:hover {
+  color: #ffffff;
+  border-color: #4a5c72;
+}
+
+.hero-body {
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+
+.lede {
+  margin: 1.1rem 0 0;
+  max-width: 62ch;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #b9c6d6;
+}
+.lede em {
+  color: #ffffff;
+  font-style: italic;
+}
+
+.install {
+  margin-top: 2.25rem;
+  max-width: 52rem;
+}
+.install pre {
+  margin: 0;
+  overflow-x: auto;
+  background: #080c11;
+  border: 1px solid var(--night-line);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: #d7e2f0;
+}
+.install .c {
+  color: #7c8da0;
+}
+
+.fineprint {
+  margin-top: 1rem;
+  font-size: 0.86rem;
+  color: #8fa0b4;
+}
+
+/* ---------- bands ---------- */
+
+.band {
+  padding: 3.5rem 1.5rem;
+}
+.band > * {
+  max-width: 68rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.band.alt {
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.prose {
+  max-width: 68ch;
+  margin: 0 0 1rem;
+  color: #333d4a;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--page);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  max-width: 68ch;
+  font-size: 1.02rem;
+}
+
+/* ---------- feature grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+.grid article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+}
+.grid p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- limits ---------- */
+
+.limits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+  max-width: 72ch;
+}
+.limits li {
+  padding-left: 1.1rem;
+  position: relative;
+  color: var(--ink-soft);
+}
+/* A rule, not a tick: these are the things osprey refuses to do. */
+.limits li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  width: 0.55rem;
+  height: 2px;
+  background: var(--warn);
+}
+.limits strong {
+  color: var(--ink);
+}
+
+/* ---------- pricing ---------- */
+
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.tiers article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+.tiers .pro {
+  border-color: var(--accent);
+  box-shadow: 0 1px 0 var(--accent) inset;
+}
+.price {
+  margin: 0.25rem 0 0.9rem;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.price span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.tiers ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: grid;
+  gap: 0.35rem;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  padding: 2.5rem 1.5rem 3.5rem;
+  background: var(--night);
+  color: #8fa0b4;
+  text-align: center;
+}
+footer p {
+  margin: 0 auto;
+  max-width: 60ch;
+}
+footer a {
+  color: #c7d3e2;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0 0.35rem;
+}
+footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+footer .fineprint {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

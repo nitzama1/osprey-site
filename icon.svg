@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2530"/>
+      <stop offset="1" stop-color="#0d1218"/>
+    </linearGradient>
+    <linearGradient id="wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4da3ff"/>
+      <stop offset="1" stop-color="#1d6fd0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1024" height="1024" rx="228" fill="url(#bg)"/>
+
+  <!-- Shield: the posture the tool defends. -->
+  <path d="M512 196 L784 300 v226 c0 168 -114 268 -272 322 c-158 -54 -272 -154 -272 -322 V300 Z"
+        fill="none" stroke="#2f3d4d" stroke-width="26" stroke-linejoin="round"/>
+
+  <!-- Osprey silhouette: stooping raptor, wings swept back. -->
+  <path d="M512 366 L604 470 L562 470 L620 596 L512 528 L404 596 L462 470 L420 470 Z"
+        fill="url(#wing)"/>
+
+  <!-- Correlation graph: three signals joining into one. Toxic combination. -->
+  <circle cx="330" cy="700" r="34" fill="#e0554e"/>
+  <circle cx="512" cy="764" r="34" fill="#e8a33d"/>
+  <circle cx="694" cy="700" r="34" fill="#4da3ff"/>
+  <path d="M330 700 L512 764 L694 700" fill="none" stroke="#5a6b7d" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

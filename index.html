@@ -63,7 +63,7 @@
           </svg>
           osprey
         </span>
-        <a class="cta small" href="#access">Request access</a>
+        <a class="cta small" href="#download">Download</a>
       </nav>
 
       <div class="hero-body">
@@ -77,7 +77,7 @@
         </p>
 
         <div class="actions">
-          <a class="cta" href="#access">Request access</a>
+          <a class="cta" href="#download">Download</a>
           <a class="cta ghost" href="#product">See what it finds</a>
         </div>
 
@@ -245,6 +245,158 @@
         </ul>
       </section>
 
+      <!--
+        Placed between the argument and the price: a reader who has just been
+        told what osprey refuses to do is the one who wants the binary, and the
+        section immediately below says what it costs when the 30 days are up.
+        Putting it any earlier would interrupt the case with a file listing.
+
+        This is also the page's third dark band, after the hero and the closing
+        note. The two other moments that ask for something are dark; so is this
+        one, and the terminal snippets sit on their own ground instead of on a
+        white card.
+      -->
+      <section id="download" class="band night">
+        <h2>Download</h2>
+        <p class="prose">
+          One archive per platform, holding the CLI, the console it serves and —
+          everywhere but Linux arm64 — the desktop window. Nothing is entered
+          here and no account is made: the 30-day trial starts at your first scan
+          and is counted on your own machine.
+        </p>
+        <p class="prose">
+          The macOS builds are not notarized and the Windows builds are not
+          signed. Both systems say so the first time you launch one, both let you
+          continue, and the wording and the clicks are below.
+        </p>
+
+        <div class="download-grid">
+          <div>
+            <!--
+              Absolute links to another origin, which the console bundle is
+              forbidden (web/scripts/audit-bundle.mjs). That rule is about what
+              the shipped app fetches at runtime; this page fetches nothing from
+              GitHub, and these are files a person clicks. They point at the
+              public osprey-site repository because the product repository is
+              private and its release assets need a token no visitor has.
+
+              /releases/latest/download/ redirects to the newest release, so
+              these five links keep working after every release without this
+              file being edited — which is why the names carry no version. The
+              version is in the tag, in the directory inside each archive, and
+              in `osprey version`.
+            -->
+            <ul class="downloads">
+              <li>
+                <a href="https://github.com/nitzama1/osprey-site/releases/latest/download/osprey_macos_arm64.zip">
+                  <strong>macOS</strong>
+                  <span class="dl-note">Apple silicon · app and CLI</span>
+                  <span class="dl-file">osprey_macos_arm64.zip</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/nitzama1/osprey-site/releases/latest/download/osprey_macos_amd64.zip">
+                  <strong>macOS</strong>
+                  <span class="dl-note">Intel · app and CLI</span>
+                  <span class="dl-file">osprey_macos_amd64.zip</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/nitzama1/osprey-site/releases/latest/download/osprey_linux_amd64.tar.gz">
+                  <strong>Linux</strong>
+                  <span class="dl-note">x86-64 · CLI, desktop window, menu entry</span>
+                  <span class="dl-file">osprey_linux_amd64.tar.gz</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/nitzama1/osprey-site/releases/latest/download/osprey_linux_arm64.tar.gz">
+                  <strong>Linux</strong>
+                  <span class="dl-note">arm64 · command line only, no desktop window</span>
+                  <span class="dl-file">osprey_linux_arm64.tar.gz</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/nitzama1/osprey-site/releases/latest/download/osprey_windows_amd64.zip">
+                  <strong>Windows</strong>
+                  <span class="dl-note">x86-64 · CLI, desktop window, install.ps1</span>
+                  <span class="dl-file">osprey_windows_amd64.zip</span>
+                </a>
+              </li>
+            </ul>
+
+            <h3>Or install the CLI from a terminal</h3>
+            <div class="install">
+              <pre><span class="c"># read it first — served from this domain</span>
+curl -fsSL https://osprey-hq.com/install.sh | less
+<span class="c"># then, if you are happy with what it does</span>
+curl -fsSL https://osprey-hq.com/install.sh | sh</pre>
+            </div>
+            <p class="prose">
+              <a href="install.sh">install.sh</a> works out your platform, takes
+              the archive above and that release's checksums.txt, stops without
+              installing anything if the sha256 does not match, and copies one
+              binary — <code>osprey</code> — into /usr/local/bin when that is
+              already writable and ~/.local/bin when it is not. It never calls
+              sudo, and it does not install the desktop window: putting an
+              application into /Applications is something you should choose,
+              not a side effect of a pipe into a shell. <code>--dry-run</code>
+              prints the plan and downloads nothing.
+            </p>
+          </div>
+
+          <div>
+            <h3>Check what you downloaded</h3>
+            <p class="prose">
+              Every release publishes
+              <a
+                href="https://github.com/nitzama1/osprey-site/releases/latest/download/checksums.txt"
+                >checksums.txt</a
+              >. Save it next to the archive and check the bytes yourself:
+            </p>
+            <div class="install">
+              <pre>sha256sum --ignore-missing -c checksums.txt</pre>
+            </div>
+            <p class="fineprint">
+              macOS ships shasum instead:
+              <code>shasum -a 256 --ignore-missing -c checksums.txt</code>. The
+              flag is there because checksums.txt covers all five archives and
+              you took one of them; without it, the four you did not download
+              are reported as failures.
+            </p>
+
+            <h3>What your operating system will say</h3>
+            <p class="prose">
+              <strong>macOS.</strong> The app is not notarized, so Gatekeeper
+              stops the first launch: "Apple could not verify that Osprey is
+              free of malware" on macOS 15, "the developer cannot be verified"
+              before that. Open System Settings, then Privacy &amp; Security,
+              and click <em>Open Anyway</em> in the line about Osprey; on macOS
+              14 and earlier, Control-click the app and choose <em>Open</em>.
+              The CLI that install.sh puts in place is unaffected — curl does
+              not attach the quarantine flag that a browser download carries.
+            </p>
+            <p class="prose">
+              <strong>Windows.</strong> The executables are not signed, so
+              SmartScreen shows "Windows protected your PC" and names the
+              publisher as unknown. Click <em>More info</em>, then
+              <em>Run anyway</em>.
+            </p>
+            <p class="prose">
+              <strong>Linux.</strong> Nothing checks and nothing warns. The
+              desktop window needs libwebkit2gtk (Debian and Ubuntu:
+              libwebkit2gtk-4.1-0); without it osprey-desktop falls back to a
+              browser window.
+            </p>
+            <p class="fineprint">
+              Notarization and an authenticode certificate are bought, not
+              earned, and neither is in place yet. Until they are, the checksums
+              are the thing to check — and they are published for every release,
+              signed or not.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section class="band alt">
         <h2>Pricing</h2>
         <div class="offer">
@@ -259,7 +411,7 @@
               your own machine. There is no account to create, nothing to cancel,
               and no server of ours that knows you tried it.
             </p>
-            <a class="cta" href="#access">Request access</a>
+            <a class="cta" href="#download">Download</a>
           </div>
           <ul class="offer-list">
             <li>Every scan: CSPM, IAM graph, containers, IaC</li>
@@ -285,15 +437,16 @@
       </section>
 
       <section id="access" class="band cta-band">
-        <h2>Try it against your own account</h2>
+        <h2>Before you buy it, or when the 30 days run out</h2>
         <p class="prose">
-          Osprey is in private release while the first customers put it through
-          their accounts. Tell us what you run and we will send you a build; the
-          30-day trial starts when you run your first scan, and a licence key is
-          what keeps it running afterwards.
+          A licence key is what keeps scanning and AI analysis running after the
+          trial, and mail is how you get one. Ask before that if you want to
+          know whether osprey covers something you run — sometimes the answer is
+          no, and it costs less to hear that from a person than to find it out on
+          day three.
         </p>
         <p class="actions">
-          <a class="cta big" href="mailto:hello@osprey-hq.com?subject=Osprey%20access">
+          <a class="cta big" href="mailto:hello@osprey-hq.com?subject=Osprey%20licence">
             hello@osprey-hq.com
           </a>
         </p>

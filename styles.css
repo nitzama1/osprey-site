@@ -246,6 +246,135 @@ blockquote {
   color: var(--ink);
 }
 
+/* ---------- downloads ---------- */
+
+/* The page's third dark surface, after the hero and the closing note: the two
+   other places that ask the reader for something. .cta-band cannot be reused
+   because it centres its contents, and a file list and a pair of terminal
+   commands are left-aligned text, not a closing statement. */
+.band.night {
+  background: linear-gradient(180deg, var(--night-soft), var(--night));
+  color: #e9eef5;
+}
+.band.night h2,
+.band.night h3 {
+  color: #ffffff;
+}
+.band.night .prose {
+  color: #b9c6d6;
+}
+.band.night .fineprint {
+  color: #7f93ab;
+}
+.band.night code {
+  color: #d7e2f0;
+}
+/* Only the links inside sentences take the accent. A blanket `a` rule here
+   also repaints the file rows below, and a row whose platform name and file
+   name are both blue has no hierarchy left to read. */
+.band.night .prose a {
+  color: var(--sky);
+}
+
+/* Two halves with one job each: take it, on the left; check it before you run
+   it, on the right. Side by side rather than stacked, because a warning about
+   unsigned builds has to arrive with the download and not a scroll later. */
+.download-grid {
+  display: grid;
+  /* minmax(0, …), not 1fr: a `pre` holding a command that cannot wrap
+     contributes its full width as the column's minimum, which on a phone
+     pushes the whole band wider than the screen. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.75rem;
+}
+.download-grid h3 {
+  margin: 1.9rem 0 0.4rem;
+}
+.download-grid > div > h3:first-child {
+  margin-top: 0;
+}
+/* The commands wrap rather than scroll sideways. Showing the one-liner is
+   pointless if a narrow screen hides the `| sh` at the end of it, and pre-wrap
+   inserts no newline, so what is copied is still one line. */
+.download-grid .install {
+  margin-top: 0.9rem;
+}
+.download-grid .install pre {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+/* The left column is sized by the longest install command, not by the file
+   list: a curl one-liner that scrolls sideways inside its own box is a command
+   nobody can read before running it. */
+@media (min-width: 60rem) {
+  .download-grid {
+    grid-template-columns: minmax(0, 32rem) minmax(0, 1fr);
+    column-gap: 3rem;
+  }
+}
+
+/* A list of files, so it looks like one: rows and hairlines, not five cards
+   with an icon each. The name is on its own line in every row and at every
+   width, because it is the string you match against checksums.txt — and
+   because a right-aligned column of file names is the first thing to collapse
+   into a mess on a phone. */
+.downloads {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--night-line);
+}
+.downloads li {
+  border-bottom: 1px solid var(--night-line);
+}
+/* Narrow: three stacked lines per row, always. Letting the note sit beside the
+   platform here makes two of the five rows wrap and stand a line taller than
+   the rest, which reads as an accident rather than as emphasis. */
+.downloads a {
+  display: grid;
+  grid-template-areas:
+    'os'
+    'note'
+    'file';
+  row-gap: 0.2rem;
+  padding: 0.75rem 0.6rem;
+  text-decoration: none;
+  color: #e9eef5;
+}
+@media (min-width: 30rem) {
+  .downloads a {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      'os note'
+      'file file';
+    align-items: baseline;
+    column-gap: 0.6rem;
+  }
+}
+.downloads a:hover {
+  background: #16202b;
+}
+.downloads strong {
+  grid-area: os;
+}
+.dl-note {
+  grid-area: note;
+  font-size: 0.88rem;
+  color: #8fa0b4;
+}
+.dl-file {
+  grid-area: file;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--sky);
+}
+.downloads a:hover .dl-file {
+  text-decoration: underline;
+}
+
 /* ---------- pricing ---------- */
 
 /* One offer, so no card grid. A single card centred in a two-column grid never

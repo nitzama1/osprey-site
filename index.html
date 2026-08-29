@@ -247,29 +247,36 @@
 
       <section class="band alt">
         <h2>Pricing</h2>
-        <div class="tiers">
-          <article>
-            <h3>Core</h3>
-            <p class="price">Free<span>open source, Apache-2.0</span></p>
-            <ul>
-              <li>Every scan: CSPM, IAM graph, containers, IaC</li>
-              <li>All 25 correlation rules and escalation paths</li>
-              <li>HTML and JSON reports</li>
-              <li>Scheduled worker with Slack and Teams alerts</li>
-            </ul>
-          </article>
-          <article class="pro">
-            <h3>Pro</h3>
-            <p class="price">$199<span>per user, per year</span></p>
-            <ul>
-              <li>Everything in Core</li>
-              <li>The console and desktop app you see above</li>
-              <li>AI review on your own key, or a local model</li>
-              <li>One-click Terraform pull requests</li>
-              <li>Multi-account views</li>
-            </ul>
+        <div class="offer">
+          <div class="offer-terms">
+            <p class="eyebrow">One product, one price</p>
+            <p class="price">30 days free<span>everything included, no card</span></p>
+            <p class="offer-then">
+              then <strong>$199</strong> per user, per year
+            </p>
+            <p class="prose">
+              The trial starts the first time you run a scan and is counted on
+              your own machine. There is no account to create, nothing to cancel,
+              and no server of ours that knows you tried it.
+            </p>
             <a class="cta" href="#access">Request access</a>
-          </article>
+          </div>
+          <ul class="offer-list">
+            <li>Every scan: CSPM, IAM graph, containers, IaC</li>
+            <li>All 25 correlation rules and escalation paths</li>
+            <li>HTML and JSON reports</li>
+            <li>Scheduled worker with Slack and Teams alerts</li>
+            <li>The console and desktop app you see above</li>
+            <li>AI review on your own key, or a local model</li>
+            <li>One-click Terraform pull requests</li>
+            <li>Multi-account views</li>
+          </ul>
+          <p class="after-trial">
+            <strong>When the trial ends, scanning and AI stop.</strong> Every scan
+            you already ran stays readable — the combinations, the paths, the
+            findings — and <code>osprey report</code> keeps exporting them.
+            Nothing you have already collected is locked away.
+          </p>
         </div>
         <p class="fineprint">
           You pay your own cloud-API and model-token costs directly. There are
@@ -281,8 +288,9 @@
         <h2>Try it against your own account</h2>
         <p class="prose">
           Osprey is in private release while the first customers put it through
-          their accounts. Tell us what you run and we will send you a build and
-          a licence.
+          their accounts. Tell us what you run and we will send you a build; the
+          30-day trial starts when you run your first scan, and a licence key is
+          what keeps it running afterwards.
         </p>
         <p class="actions">
           <a class="cta big" href="mailto:hello@osprey-hq.com?subject=Osprey%20access">

@@ -148,6 +148,12 @@ h1 {
   font-size: 0.86rem;
   color: #8fa0b4;
 }
+/* .fineprint's grey is tuned for the dark hero and closing bands. On a light
+   band it lands near 2.6:1 against white, so light-band copy takes the body's
+   own soft ink and stays readable. */
+.band .fineprint {
+  color: var(--ink-soft);
+}
 
 /* ---------- bands ---------- */
 
@@ -242,21 +248,78 @@ blockquote {
 
 /* ---------- pricing ---------- */
 
-.tiers {
+/* One offer, so no card grid. A single card centred in a two-column grid never
+   stops looking like one whose sibling failed to load, so the terms and the
+   contents sit side by side in one panel instead — and it takes the same
+   accent-edged treatment as the privacy quote, because it is the other claim on
+   this page a reader will want to check word by word. */
+.offer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   align-items: start;
+  background: var(--page);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 1.4rem 1.5rem;
 }
-.tiers article {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 1.25rem;
+.offer .price {
+  margin: 0 0 0.3rem;
 }
-.tiers .pro {
-  border-color: var(--accent);
-  box-shadow: 0 1px 0 var(--accent) inset;
+.offer-then {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+}
+.offer-then strong {
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.offer .prose {
+  margin-bottom: 1.25rem;
+}
+.offer-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: grid;
+  gap: 0.35rem;
+}
+/* The last row of the offer, spanning it: what you pay, what you get, then what
+   happens if you stop paying. Anyone who reads a pricing section to the end is
+   looking for exactly this, and leaving it to the fineprint would be the tell
+   that it is worse than it is. */
+.after-trial {
+  margin: 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.after-trial strong {
+  color: var(--ink);
+}
+@media (min-width: 52rem) {
+  .offer {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+    column-gap: 2.75rem;
+    row-gap: 1.6rem;
+    padding: 1.6rem 1.8rem;
+  }
+  /* Eight short lines against a five-element column: centred, the list reads as
+     placed. Top-aligned it leaves a hole under itself and looks like the column
+     ran out of content. */
+  .offer-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    align-self: center;
+  }
+  /* Padding rather than max-width, so the rule above this line spans the whole
+     panel while the line itself keeps a readable measure. */
+  .after-trial {
+    grid-column: 1 / -1;
+    padding-right: 38%;
+  }
 }
 .price {
   margin: 0.25rem 0 0.9rem;
@@ -271,14 +334,6 @@ blockquote {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ink-soft);
-}
-.tiers ul {
-  margin: 0;
-  padding-left: 1.1rem;
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  display: grid;
-  gap: 0.35rem;
 }
 
 /* ---------- footer ---------- */
@@ -516,8 +571,8 @@ figcaption {
   font-size: 1.08rem;
 }
 
-.tiers .pro .cta {
-  margin-top: 1rem;
+.offer .cta {
+  margin-top: 0.2rem;
 }
 
 .cta-band {

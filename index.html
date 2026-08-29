@@ -3,35 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Osprey — privacy-first cloud security, on your machine</title>
+    <title>Osprey — find the cloud risks that actually chain together</title>
     <meta
       name="description"
-      content="An on-demand CSPM, IAM-graph and container scanner that runs entirely on your machine. Cloud metadata never leaves your laptop."
+      content="Osprey correlates misconfiguration, identity and vulnerability data into the handful of combinations an attacker can actually use — running entirely on your own machine."
     />
     <meta name="theme-color" content="#0d1218" />
+
     <!--
-      Relative, not absolute. GitHub Pages serves a project repository under a
-      subpath (/osprey-site/), where "/styles.css" resolves to the domain root
-      and 404s. Relative paths work there and at an apex domain both.
+      Relative paths: GitHub Pages serves a project repository under a subpath,
+      where an absolute /styles.css resolves to the domain root and 404s. These
+      work there and at the apex domain both.
     -->
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
 
     <!--
-      No fonts, scripts, analytics or images are loaded from anywhere but this
-      origin. A page selling "your data never leaves your machine" that phoned a
-      CDN on load would be arguing against itself.
+      Nothing is loaded from anywhere but this origin: no fonts, no analytics,
+      no tag manager. A page selling "your cloud data never leaves your machine"
+      that phoned a third party on load would be arguing against itself, and the
+      people being sold to are exactly the ones who check.
     -->
-    <meta property="og:title" content="Osprey — privacy-first cloud security" />
+    <meta property="og:title" content="Osprey — cloud security that runs on your machine" />
     <meta
       property="og:description"
-      content="CSPM, IAM graph and container scanning that runs on your machine. No vendor backend, no telemetry."
+      content="The handful of findings that are actually exploitable together. No agents, no vendor backend, no telemetry."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://osprey-hq.com/" />
   </head>
 
   <body>
-    <a class="skip" href="#what">Skip to content</a>
+    <a class="skip" href="#problem">Skip to content</a>
 
     <header class="hero">
       <nav class="topline" aria-label="Primary">
@@ -45,10 +48,7 @@
               stroke-width="26"
               stroke-linejoin="round"
             />
-            <path
-              d="M512 366 L604 470 L562 470 L620 596 L512 528 L404 596 L462 470 L420 470 Z"
-              fill="#4da3ff"
-            />
+            <path d="M512 366 L604 470 L562 470 L620 596 L512 528 L404 596 L462 470 L420 470 Z" fill="#4da3ff" />
             <circle cx="330" cy="700" r="34" fill="#e0554e" />
             <circle cx="512" cy="764" r="34" fill="#e8a33d" />
             <circle cx="694" cy="700" r="34" fill="#4da3ff" />
@@ -63,193 +63,247 @@
           </svg>
           osprey
         </span>
-        <a class="ghost" href="https://github.com/nitzama1/osprey">Source</a>
+        <a class="cta small" href="#access">Request access</a>
       </nav>
 
       <div class="hero-body">
-        <h1>Cloud security that runs on your machine.</h1>
+        <p class="eyebrow">CSPM · IAM graph · container and IaC scanning</p>
+        <h1>Your scanner found 900 problems.<br />Three of them can end you.</h1>
         <p class="lede">
-          Osprey reads your AWS account through read-only APIs and reports the
-          handful of findings that are actually exploitable <em>together</em> —
-          the analysis enterprises buy a CNAPP for, without the CNAPP. No vendor
-          backend, no data egress, no telemetry.
+          Osprey correlates misconfiguration, identity reach, network exposure
+          and CVEs into the handful of combinations an attacker can actually
+          walk — and it does it on your laptop, against your account, without
+          sending a byte to a vendor.
         </p>
 
-        <div class="install">
-          <pre><code><span class="c"># with the AWS credentials you already have</span>
-osprey scan aws
-
-<span class="c"># or through a dedicated read-only role</span>
-osprey onboard | aws cloudformation deploy --stack-name osprey-audit \
-  --template-file /dev/stdin --capabilities CAPABILITY_NAMED_IAM
-osprey scan aws --profile osprey-audit</code></pre>
+        <div class="actions">
+          <a class="cta" href="#access">Request access</a>
+          <a class="cta ghost" href="#product">See what it finds</a>
         </div>
 
-        <p class="fineprint">
-          A useful report in under five minutes, with zero configuration beyond
-          the credentials on your laptop.
-        </p>
+        <dl class="stats">
+          <div><dt>Time to first report</dt><dd>&lt; 5 min</dd></div>
+          <div><dt>Correlation rules</dt><dd>25 built in</dd></div>
+          <div><dt>Data sent to a vendor</dt><dd>None</dd></div>
+        </dl>
       </div>
     </header>
 
     <main>
-      <section id="what" class="band">
+      <section id="problem" class="band">
         <h2>Findings are noise. Combinations are incidents.</h2>
-        <p class="prose">
-          A public bucket is a ticket. An over-permissive role is a ticket. A
-          critical CVE is a ticket. An internet-facing instance whose role can
-          pass any role, running an image with that CVE, is an account takeover
-          — and no single-purpose scanner will tell you, because each one only
-          sees its own third of it.
-        </p>
-        <p class="prose">
-          Osprey joins them. It builds an identity graph from IAM, resource and
-          trust policies, marks what is reachable from the internet, folds in
-          CSPM and CVE findings, and runs
-          <strong>25 deterministic rules</strong> over the result. No model
-          decides what is true.
-        </p>
+        <div class="two">
+          <div>
+            <p class="prose">
+              A public bucket is a ticket. An over-permissive role is a ticket.
+              A critical CVE is a ticket. They sit in three different tools, get
+              three different owners, and each one is triaged as low priority
+              because, alone, each one is.
+            </p>
+            <p class="prose">
+              An internet-facing service, running an image with that CVE,
+              carrying a role that can pass any role, is not a ticket. It is an
+              account takeover — and nothing in your stack is looking at all
+              three at once.
+            </p>
+          </div>
+          <ul class="chain">
+            <li><span>1</span> Internet-facing service</li>
+            <li><span>2</span> Container escape in its image</li>
+            <li><span>3</span> Role may pass any role</li>
+            <li class="out"><span>=</span> Full account compromise</li>
+          </ul>
+        </div>
       </section>
 
-      <section class="band alt">
-        <h2>The privacy contract</h2>
+      <section id="product" class="band alt">
+        <h2>What you get, five minutes after installing</h2>
+        <p class="prose">
+          One local scan of a demonstration account. No agents were installed,
+          nothing was written to the account, and nothing left the machine.
+        </p>
+
+        <figure>
+          <img
+            src="img/combinations.webp"
+            width="2200"
+            height="1526"
+            alt="The osprey console showing a critical toxic combination, with the evidence lines that made it fire."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            Every combination shows <strong>why it fired</strong> — the grant,
+            the path, the finding. You can check the tool's reasoning instead of
+            trusting a score.
+          </figcaption>
+        </figure>
+
+        <div class="two figures">
+          <figure>
+            <img
+              src="img/paths.webp"
+              width="2200"
+              height="1196"
+              alt="Privilege-escalation paths listed hop by hop, from a role to a wildcard grant."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              Escalation paths, hop by hop. Cut any single hop and the path is
+              gone — so you can see the cheapest fix, not just the longest list.
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="img/findings.webp"
+              width="2200"
+              height="1347"
+              alt="The findings table with severity filters, showing CVE and IAM findings side by side."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              The full inventory is still there when an auditor asks. It is just
+              not what greets you first.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="band">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Read, never write</h3>
+            <p>
+              Osprey uses the AWS credentials already on your machine, or a
+              read-only role it generates for you. Every call is a
+              configuration-plane read: no agent, no data-plane access, no
+              snapshot.
+            </p>
+          </li>
+          <li>
+            <h3>Build the graph</h3>
+            <p>
+              Principals, policies, resources, trust relationships and internet
+              exposure become one property graph, then CSPM and container
+              findings are attached to the resources they belong to.
+            </p>
+          </li>
+          <li>
+            <h3>Correlate, then explain</h3>
+            <p>
+              25 deterministic rules find the combinations. Optionally, a model
+              on your own key ranks and narrates them — reading a pseudonymized
+              digest, never your ARNs.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="band alt privacy">
+        <h2>The part your security team will ask about</h2>
         <blockquote>
-          Your cloud metadata never leaves your machine. The only outbound calls
-          are to your cloud provider, your chosen LLM endpoint, GitHub when you
-          ask for a pull request, and the upstream endpoints a scanner engine
-          needs when you opt into one. There is no telemetry — and no vendor
-          endpoint for it to go to.
+          Your cloud metadata never leaves your machine. There is no vendor
+          backend to send it to, no account to create, and no telemetry. The
+          only outbound calls are to your own cloud provider — and, if you turn
+          them on, to the scanner engines and the model endpoint you chose.
         </blockquote>
         <p class="prose">
-          This is architecture, not policy. There are no servers to host,
-          nothing to breach, and nothing to subpoena.
+          This is why osprey gets through review at companies that will not put
+          cloud metadata in a SaaS: there is nothing to review. No data
+          processing agreement, no sub-processor list, no breach surface,
+          because the vendor operates no servers at all.
         </p>
       </section>
 
       <section class="band">
-        <h2>What it does</h2>
-        <div class="grid">
-          <article>
-            <h3>Toxic-combination engine</h3>
-            <p>
-              25 built-in rules joining exposure, identity and vulnerability
-              signals. Deterministic and offline: the same input always produces
-              the same output.
-            </p>
-          </article>
-          <article>
-            <h3>IAM graph and escalation paths</h3>
-            <p>
-              A property graph of principals, policies and resources built from
-              read-only API calls, with privilege-escalation paths implemented
-              from published technique classes.
-            </p>
-          </article>
-          <article>
-            <h3>Pinned scanner engines</h3>
-            <p>
-              Prowler for CSPM, Trivy for container images and Terraform — run
-              as subprocesses at pinned versions, verified by SHA-256. No
-              scanner code is linked into the binary.
-            </p>
-          </article>
-          <article>
-            <h3>Local console and desktop app</h3>
-            <p>
-              One embedded interface, served on 127.0.0.1. Open it in a browser,
-              install it as an app, or run the packaged desktop build on the
-              operating system's own webview.
-            </p>
-          </article>
-          <article>
-            <h3>Unattended worker</h3>
-            <p>
-              Rescans on a schedule and alerts only on findings that appeared or
-              were fixed, plus fifteen high-risk CloudTrail events. Read-only
-              and alert-only, by Helm chart.
-            </p>
-          </article>
-          <article>
-            <h3>AI review, on your key</h3>
-            <p>
-              OpenAI, Anthropic or a local Ollama. The model reads a
-              pseudonymized digest — no ARNs, account ids or addresses — and
-              returns a ranked reading. It analyses; it never drives.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="band alt">
-        <h2>What it deliberately does not do</h2>
+        <h2>What it deliberately will not do</h2>
         <ul class="limits">
           <li>
             <strong>No snapshot scanning.</strong> Osprey never clones, mounts
-            or reconstructs block storage. That is a permanent design rule, and
-            the coverage it costs is documented rather than glossed over.
+            or reconstructs your block storage. The coverage that costs is
+            documented, not hidden.
           </li>
           <li>
             <strong>No runtime agent.</strong> Nothing is installed on your
-            workloads. Everything comes from the configuration plane.
+            workloads, so nothing of ours can crash them.
           </li>
           <li>
-            <strong>No data-plane reads.</strong> Object contents, database
-            rows and logs are never read, so a scan cannot leak them.
+            <strong>No data-plane reads.</strong> Object contents, database rows
+            and logs are never read — a scan cannot leak what it never touched.
           </li>
           <li>
-            <strong>No auto-apply.</strong> Remediation is proposed as a pull
-            request a human reviews, never applied to your account.
+            <strong>No auto-apply.</strong> Fixes arrive as a pull request a
+            human approves, never as a change to your account.
           </li>
           <li>
-            <strong>No SaaS backend.</strong> Not "we don't look at your data" —
-            there is nowhere for it to be sent.
+            <strong>No AI in the driver's seat.</strong> The model explains and
+            ranks. What gets scanned, stored and reported is fixed code.
           </li>
         </ul>
       </section>
 
-      <section class="band">
+      <section class="band alt">
         <h2>Pricing</h2>
         <div class="tiers">
           <article>
-            <h3>OSS core</h3>
-            <p class="price">Free<span>Apache-2.0</span></p>
+            <h3>Core</h3>
+            <p class="price">Free<span>open source, Apache-2.0</span></p>
             <ul>
-              <li>Every CLI scan: CSPM, IAM graph, containers, IaC</li>
-              <li>Deterministic toxic-combination rules</li>
-              <li>HTML and OCSF-aligned JSON reports</li>
-              <li>Kubernetes worker with Slack and Teams alerts</li>
+              <li>Every scan: CSPM, IAM graph, containers, IaC</li>
+              <li>All 25 correlation rules and escalation paths</li>
+              <li>HTML and JSON reports</li>
+              <li>Scheduled worker with Slack and Teams alerts</li>
             </ul>
           </article>
           <article class="pro">
             <h3>Pro</h3>
             <p class="price">$199<span>per user, per year</span></p>
             <ul>
-              <li>Everything in the OSS core</li>
-              <li>Local console and desktop app</li>
-              <li>AI review on your own key or a local model</li>
+              <li>Everything in Core</li>
+              <li>The console and desktop app you see above</li>
+              <li>AI review on your own key, or a local model</li>
               <li>One-click Terraform pull requests</li>
               <li>Multi-account views</li>
             </ul>
+            <a class="cta" href="#access">Request access</a>
           </article>
         </div>
         <p class="fineprint">
-          You pay your own cloud-API and model-token costs. The vendor runs no
-          servers, so there is nothing to mark up.
+          You pay your own cloud-API and model-token costs directly. There are
+          no servers between you and them to mark up.
+        </p>
+      </section>
+
+      <section id="access" class="band cta-band">
+        <h2>Try it against your own account</h2>
+        <p class="prose">
+          Osprey is in private release while the first customers put it through
+          their accounts. Tell us what you run and we will send you a build and
+          a licence.
+        </p>
+        <p class="actions">
+          <a class="cta big" href="mailto:hello@osprey-hq.com?subject=Osprey%20access">
+            hello@osprey-hq.com
+          </a>
+        </p>
+        <p class="fineprint">
+          A person answers. We do not run a mailing list, and there is nothing
+          to unsubscribe from.
         </p>
       </section>
     </main>
 
     <footer>
-      <p>
-        <a href="https://github.com/nitzama1/osprey">GitHub</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://github.com/nitzama1/osprey/tree/main/docs">Documentation</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://github.com/nitzama1/osprey/issues">Issues</a>
-      </p>
       <p class="fineprint">
         Osprey is a working codename, pending trademark search. This page loads
-        no third-party script, font or image, and sets no cookie.
+        no third-party script, font or image, sets no cookie, and counts no
+        visitors.
+      </p>
+      <p class="fineprint">
+        <a href="mailto:hello@osprey-hq.com">hello@osprey-hq.com</a>
       </p>
     </footer>
   </body>

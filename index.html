@@ -9,8 +9,13 @@
       content="An on-demand CSPM, IAM-graph and container scanner that runs entirely on your machine. Cloud metadata never leaves your laptop."
     />
     <meta name="theme-color" content="#0d1218" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css" />
+    <!--
+      Relative, not absolute. GitHub Pages serves a project repository under a
+      subpath (/osprey-site/), where "/styles.css" resolves to the domain root
+      and 404s. Relative paths work there and at an apex domain both.
+    -->
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
 
     <!--
       No fonts, scripts, analytics or images are loaded from anywhere but this

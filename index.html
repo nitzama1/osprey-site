@@ -246,9 +246,9 @@
       </section>
 
       <!--
-        Placed between the argument and the price: a reader who has just been
+        Placed between the argument and the terms: a reader who has just been
         told what osprey refuses to do is the one who wants the binary, and the
-        section immediately below says what it costs when the 30 days are up.
+        section immediately below says what it costs, which for now is nothing.
         Putting it any earlier would interrupt the case with a file listing.
 
         This is also the page's third dark band, after the hero and the closing
@@ -261,13 +261,12 @@
         <p class="prose">
           One archive per platform, holding the CLI, the console it serves and —
           everywhere but Linux arm64 — the desktop window. Nothing is entered
-          here and no account is made: the 30-day trial starts at your first scan
-          and is counted on your own machine.
+          here and no account is made.
         </p>
         <p class="prose">
-          The macOS builds are not notarized and the Windows builds are not
-          signed. Both systems say so the first time you launch one, both let you
-          continue, and the wording and the clicks are below.
+          The Windows builds are not signed. Windows says so the first time you
+          launch one, it lets you continue, and the wording and the clicks are
+          below.
         </p>
 
         <div class="download-grid">
@@ -366,14 +365,14 @@ curl -fsSL https://osprey-hq.com/install.sh | sh</pre>
 
             <h3>What your operating system will say</h3>
             <p class="prose">
-              <strong>macOS.</strong> The app is not notarized, so Gatekeeper
-              stops the first launch: "Apple could not verify that Osprey is
-              free of malware" on macOS 15, "the developer cannot be verified"
-              before that. Open System Settings, then Privacy &amp; Security,
-              and click <em>Open Anyway</em> in the line about Osprey; on macOS
-              14 and earlier, Control-click the app and choose <em>Open</em>.
-              The CLI that install.sh puts in place is unaffected — curl does
-              not attach the quarantine flag that a browser download carries.
+              <strong>macOS.</strong> The app is not signed with a Developer ID
+              or notarized yet, so the first double-click is refused with "Apple
+              could not verify Osprey.app is free of malware". Click
+              <em>Done</em>, open System Settings → Privacy &amp; Security, and
+              click <em>Open Anyway</em> beside the Osprey line; macOS asks once
+              more and then remembers. The CLI that install.sh puts in place
+              never meets any of that — curl does not attach the quarantine flag
+              that a browser download carries.
             </p>
             <p class="prose">
               <strong>Windows.</strong> The executables are not signed, so
@@ -388,7 +387,7 @@ curl -fsSL https://osprey-hq.com/install.sh | sh</pre>
               browser window.
             </p>
             <p class="fineprint">
-              Notarization and an authenticode certificate are bought, not
+              A Developer ID and an authenticode certificate are bought, not
               earned, and neither is in place yet. Until they are, the checksums
               are the thing to check — and they are published for every release,
               signed or not.
@@ -398,18 +397,14 @@ curl -fsSL https://osprey-hq.com/install.sh | sh</pre>
       </section>
 
       <section class="band alt">
-        <h2>Pricing</h2>
+        <h2>Free for now</h2>
         <div class="offer">
           <div class="offer-terms">
-            <p class="eyebrow">One product, one price</p>
-            <p class="price">30 days free<span>everything included, no card</span></p>
-            <p class="offer-then">
-              then <strong>$199</strong> per user, per year
-            </p>
+            <p class="eyebrow">One product, all of it</p>
+            <p class="price">Free<span>every capability, no time limit</span></p>
             <p class="prose">
-              The trial starts the first time you run a scan and is counted on
-              your own machine. There is no account to create, nothing to cancel,
-              and no server of ours that knows you tried it.
+              No card, no account, no trial and no licence key. Nothing on your
+              machine counts down, and no server of ours knows you installed it.
             </p>
             <a class="cta" href="#download">Download</a>
           </div>
@@ -423,12 +418,6 @@ curl -fsSL https://osprey-hq.com/install.sh | sh</pre>
             <li>One-click Terraform pull requests</li>
             <li>Multi-account views</li>
           </ul>
-          <p class="after-trial">
-            <strong>When the trial ends, scanning and AI stop.</strong> Every scan
-            you already ran stays readable — the combinations, the paths, the
-            findings — and <code>osprey report</code> keeps exporting them.
-            Nothing you have already collected is locked away.
-          </p>
         </div>
         <p class="fineprint">
           You pay your own cloud-API and model-token costs directly. There are
@@ -437,16 +426,14 @@ curl -fsSL https://osprey-hq.com/install.sh | sh</pre>
       </section>
 
       <section id="access" class="band cta-band">
-        <h2>Before you buy it, or when the 30 days run out</h2>
+        <h2>Questions</h2>
         <p class="prose">
-          A licence key is what keeps scanning and AI analysis running after the
-          trial, and mail is how you get one. Ask before that if you want to
-          know whether osprey covers something you run — sometimes the answer is
-          no, and it costs less to hear that from a person than to find it out on
-          day three.
+          Ask if you want to know whether osprey covers something you run —
+          sometimes the answer is no, and it costs less to hear that from a person
+          than to find it out on day three.
         </p>
         <p class="actions">
-          <a class="cta big" href="mailto:hello@osprey-hq.com?subject=Osprey%20licence">
+          <a class="cta big" href="mailto:hello@osprey-hq.com?subject=Osprey">
             hello@osprey-hq.com
           </a>
         </p>

@@ -57,8 +57,14 @@ have() {
 # Every fetch is https, including after a redirect: a downloader that can be
 # talked down to plain http by a Location header has no integrity left to
 # offer, and the whole point of the next step is integrity.
+#
+# --progress-bar rather than curl's default meter or -s. The default prints a
+# nine-column table twice, which buries this script's own "==>" lines in a
+# transcript someone is reading to decide whether to trust it; -s would go too
+# far and leave a 20MB download looking like a hang, and would also swallow the
+# reason a fetch failed. The bar is one line and curl still reports its errors.
 fetch() { # fetch <url> <output-file>
-	curl -fL --proto '=https' --proto-redir '=https' -o "$2" "$1"
+	curl -fL --progress-bar --proto '=https' --proto-redir '=https' -o "$2" "$1"
 }
 
 # macOS ships shasum, Linux ships sha256sum, and both read the same
@@ -257,4 +263,3 @@ echo "  osprey onboard         generate a read-only role to scan through instead
 echo
 echo "The desktop window is not installed; this script installs the CLI only."
 echo "It is in the platform archive at https://osprey-hq.com/#download."
-echo "The 30-day trial starts at your first scan and is counted on this machine."

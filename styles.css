@@ -375,7 +375,7 @@ blockquote {
   text-decoration: underline;
 }
 
-/* ---------- pricing ---------- */
+/* ---------- offer ---------- */
 
 /* One offer, so no card grid. A single card centred in a two-column grid never
    stops looking like one whose sibling failed to load, so the terms and the
@@ -393,15 +393,7 @@ blockquote {
   padding: 1.4rem 1.5rem;
 }
 .offer .price {
-  margin: 0 0 0.3rem;
-}
-.offer-then {
   margin: 0 0 1rem;
-  color: var(--ink-soft);
-}
-.offer-then strong {
-  font-size: 1.2rem;
-  color: var(--ink);
 }
 .offer .prose {
   margin-bottom: 1.25rem;
@@ -414,20 +406,6 @@ blockquote {
   display: grid;
   gap: 0.35rem;
 }
-/* The last row of the offer, spanning it: what you pay, what you get, then what
-   happens if you stop paying. Anyone who reads a pricing section to the end is
-   looking for exactly this, and leaving it to the fineprint would be the tell
-   that it is worse than it is. */
-.after-trial {
-  margin: 0;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-}
-.after-trial strong {
-  color: var(--ink);
-}
 @media (min-width: 52rem) {
   .offer {
     grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
@@ -435,19 +413,13 @@ blockquote {
     row-gap: 1.6rem;
     padding: 1.6rem 1.8rem;
   }
-  /* Eight short lines against a five-element column: centred, the list reads as
+  /* Eight short lines against a four-element column: centred, the list reads as
      placed. Top-aligned it leaves a hole under itself and looks like the column
      ran out of content. */
   .offer-list {
     grid-template-columns: 1fr 1fr;
     column-gap: 2rem;
     align-self: center;
-  }
-  /* Padding rather than max-width, so the rule above this line spans the whole
-     panel while the line itself keeps a readable measure. */
-  .after-trial {
-    grid-column: 1 / -1;
-    padding-right: 38%;
   }
 }
 .price {
